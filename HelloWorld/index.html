@@ -1,0 +1,35 @@
+<html>
+    <head>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/browser.min.js"></script>
+<!--
+    <script src="../lib/jquery.min.js"></script>
+    <script src="../lib/marked.min.js"></script>
+-->
+        
+    </head>
+    <body>
+      
+      <script type="text/babel">
+        // 1、把React的Class看做是一个模具
+        var HelloWorld = React.createClass({
+                render: function(){
+                     return (
+                        <div> 
+                        Hello world! 
+                        </div>
+                     );
+                }
+        });
+        
+        
+        // 让这个模具生产东西
+        var element = React.createElement(HelloWorld);
+        
+        // 把模具生产出来的的东西放到页面的某个位置
+        ReactDOM.render(element, document.body);
+        
+    </script>
+    </body>
+</html>

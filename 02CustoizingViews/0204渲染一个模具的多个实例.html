@@ -1,0 +1,80 @@
+<html>
+    <head>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/browser.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    </head>
+    <body>
+    
+    <div class="container">
+       
+    </div>
+
+    <script type="text/babel">
+
+        //被嵌套模具中埋下一些变量
+        //props属性
+        var MyBadge = React.createClass({
+            render: function(){
+                return <button className="btn btn-primary" type="button">
+                    {this.props.title} <span className="badge">{this.props.number}</span>
+                </button>    
+            }
+        });
+        
+        //创建另外一个嵌套模具
+        var Thumbnail = React.createClass({
+            render: function(){
+                return  <div className="col-sm-6 col-md-4"><div className="thumbnail">
+                    <img src={this.props.imageUrl} />
+                    <div className="caption">
+                        <h3>{this.props.header}</h3>
+                        <p>{this.props.description}</p>
+                        <p>
+                            <MyBadge title={this.props.title} number={this.props.number} />
+                        </p>
+                    </div>
+                </div></div>
+            }
+        });
+        
+        //创建一个列表模具
+        var ThumbnailList = React.createClass({
+            render: function(){
+                var list = this.props.thumbnailData.map(function(thumbnailProps){
+                    return <Thumbnail {...thumbnailProps} />
+                });
+                
+                return <div>
+                    {list}
+                </div>
+            }
+        });
+        
+        //实际数据，字段与模具中的变量名对应
+        var options = {
+            thumbnailData:[
+                {
+                    title: 'Show Courses',
+                    number: 12,
+                    heder: 'Learn React',
+                    description: 'React is a fantastic new front end library for rendering web pages.React is a fantastic new front end library.',
+                    imageUrl: '../images/react.jpg'
+                },{
+                    title: 'Show Courses',
+                    number: 25,
+                    heder: 'Learn Gulp',
+                    description: 'Gulp will speed up your workflow. Gulp will speed up your development workfow',
+                    imageUrl: '../images/react.jpg'
+                }
+            ]
+        };
+        
+        //让模具出东西，并且给模具中的变量赋值
+        var element = React.createElement(ThumbnailList, options);
+        
+        React.render(element, document.querySelector('.container'));
+    </script>
+    </body>
+</html>

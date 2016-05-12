@@ -1,0 +1,59 @@
+<html>
+    <head>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/browser.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    </head>
+    <body>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 target"></div>
+        </div>        
+    </div>
+
+    <script type="text/babel">
+
+        //模具中埋下一些变量
+        //props属性
+        var MyBadge = React.createClass({
+            render: function(){
+                return <button className="btn btn-primary" type="button">
+                    {this.props.title} <span className="badge">{this.props.number}</span>
+                </button>    
+            }
+        });
+        
+        //创建另外一个模具
+        var Thumbnail = React.createClass({
+            render: function(){
+                return <div className="thumbnail">
+                    <img src={this.props.imageUrl} />
+                    <div className="caption">
+                        <h3>{this.props.header}</h3>
+                        <p>{this.props.description}</p>
+                        <p>
+                            <MyBadge title={this.props.title} number={this.props.number} />
+                        </p>
+                    </div>
+                </div>
+            }
+        });
+        
+        //实际数据，字段与模具中的变量名对应
+        var options = {
+            title: "See Tutorials",
+            number: 32,
+            header: 'Learn React',
+            description: 'React is fantastic new Library for making fast, dynamic pages.',
+            imageUrl: '../images/react.jpg'
+        };
+        
+        //让模具出东西，并且给模具中的变量赋值
+        var element = React.createElement(Thumbnail, options);
+        
+        React.render(element, document.querySelector('.target'));
+    </script>
+    </body>
+</html>

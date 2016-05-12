@@ -1,6 +1,12 @@
-## React和Bootstrap如何结合使用呢？ ##
+## 0201 渲染静态内容 
 
-### → 比如，在Bootstrap中，按如下创建Badges ###
+【问题】
+
+在Hello World中渲染了一个div,如何渲染包含Bootstrap样式的代码段呢？
+
+
+**比如，在Bootstrap中，是按如下创建Badges**
+
 
     <a href="#">Inbox<span class="badge">42</span></a>
     
@@ -10,7 +16,8 @@
     </button>
 
 
-### → 接下来，按React创建页面元素的三个步骤来写： ###
+**接下来，按React创建页面元素的三个步骤来写**  
+
 
     var MyBadge = React.createClass({
     	render: function(){
@@ -41,3 +48,11 @@
     	}
     });
 
+
+
+
+## 0202 渲染动态内容 ##
+
+1. 创建模具的时候，把变量放在模具里
+2. 创建元素的时候，给模具中的变量赋值
+3. 把元素渲染到页面
